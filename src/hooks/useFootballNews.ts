@@ -9,6 +9,7 @@ export interface NewsArticle {
   source_id: string;
   source_name?: string;
   image_url: string | null;
+  video_url: string | null;
   description: string | null;
   pubDate: string;
   sentiment: string | null;

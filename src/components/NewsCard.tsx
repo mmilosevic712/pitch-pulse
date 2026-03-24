@@ -1,6 +1,11 @@
+import { useState } from "react";
+import { Play } from "lucide-react";
 import { SentimentBadge } from "./SentimentBadge";
 import { formatTimeAgo } from "@/lib/timeFormat";
 import type { NewsArticle } from "@/hooks/useFootballNews";
+
+const FALLBACK_IMAGE =
+  "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000&auto=format&fit=crop";
 
 interface NewsCardProps {
   article: NewsArticle;
@@ -8,6 +13,10 @@ interface NewsCardProps {
 }
 
 export function NewsCard({ article, index }: NewsCardProps) {
+  const hasImage = !!article.image_url;
+  const showVideoIcon = !hasImage && !!article.video_url;
+  const [src, setSrc] = useState(hasImage ? article.image_url! : FALLBACK_IMAGE);
+
   return (
     <a
       href={article.link}
@@ -19,11 +28,19 @@ export function NewsCard({ article, index }: NewsCardProps) {
       {/* Image */}
       <div className="relative aspect-video overflow-hidden">
         <img
-          src={article.image_url ?? "/placeholder.svg"}
+          src={src}
           alt={article.title}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
+          onError={() => setSrc(FALLBACK_IMAGE)}
         />
+        {showVideoIcon && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="rounded-full bg-background/70 p-3 backdrop-blur-sm border border-border/40">
+              <Play className="h-6 w-6 text-primary fill-primary" />
+            </div>
+          </div>
+        )}
         <div className="absolute top-3 right-3">
           <SentimentBadge sentiment={article.sentiment} />
         </div>
