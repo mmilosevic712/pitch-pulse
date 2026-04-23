@@ -50,7 +50,9 @@ const Index = () => {
             <p className="text-neon-red font-semibold mb-2">
               Something went wrong
             </p>
-            <p className="text-muted-foreground text-sm mb-4">{error}</p>
+            <p className="text-muted-foreground text-sm mb-4">
+              We couldn't load the latest stories. Please try again in a moment.
+            </p>
             <Button
               variant="outline"
               size="sm"
