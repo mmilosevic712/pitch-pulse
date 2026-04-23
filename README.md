@@ -1,4 +1,4 @@
-# Pitch Pulse ⚽️
+Pitch Pulse 
 
 **Pitch Pulse** is a real-time football news aggregator that brings the latest "Hot Topics" from the world of soccer into one clean, responsive interface. 
 
