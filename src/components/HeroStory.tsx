@@ -2,19 +2,18 @@ import { useState } from "react";
 import { Play } from "lucide-react";
 import { SentimentBadge } from "./SentimentBadge";
 import { formatTimeAgo } from "@/lib/timeFormat";
+import { getFallbackImage } from "@/lib/fallbackImages";
 import type { NewsArticle } from "@/hooks/useFootballNews";
-
-const FALLBACK_IMAGE =
-  "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000&auto=format&fit=crop";
 
 interface HeroStoryProps {
   article: NewsArticle;
 }
 
 export function HeroStory({ article }: HeroStoryProps) {
+  const fallback = getFallbackImage(article.article_id || article.title);
   const hasImage = !!article.image_url;
   const showVideoIcon = !hasImage && !!article.video_url;
-  const [src, setSrc] = useState(hasImage ? article.image_url! : FALLBACK_IMAGE);
+  const [src, setSrc] = useState(hasImage ? article.image_url! : fallback);
 
   return (
     <a
@@ -29,7 +28,7 @@ export function HeroStory({ article }: HeroStoryProps) {
           src={src}
           alt={article.title}
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-          onError={() => setSrc(FALLBACK_IMAGE)}
+          onError={() => setSrc(fallback)}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
       </div>

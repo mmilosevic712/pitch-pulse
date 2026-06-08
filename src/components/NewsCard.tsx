@@ -2,10 +2,8 @@ import { useState } from "react";
 import { Play } from "lucide-react";
 import { SentimentBadge } from "./SentimentBadge";
 import { formatTimeAgo } from "@/lib/timeFormat";
+import { getFallbackImage } from "@/lib/fallbackImages";
 import type { NewsArticle } from "@/hooks/useFootballNews";
-
-const FALLBACK_IMAGE =
-  "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000&auto=format&fit=crop";
 
 interface NewsCardProps {
   article: NewsArticle;
@@ -13,9 +11,10 @@ interface NewsCardProps {
 }
 
 export function NewsCard({ article, index }: NewsCardProps) {
+  const fallback = getFallbackImage(article.article_id || article.title);
   const hasImage = !!article.image_url;
   const showVideoIcon = !hasImage && !!article.video_url;
-  const [src, setSrc] = useState(hasImage ? article.image_url! : FALLBACK_IMAGE);
+  const [src, setSrc] = useState(hasImage ? article.image_url! : fallback);
 
   return (
     <a
@@ -32,7 +31,7 @@ export function NewsCard({ article, index }: NewsCardProps) {
           alt={article.title}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
-          onError={() => setSrc(FALLBACK_IMAGE)}
+          onError={() => setSrc(fallback)}
         />
         {showVideoIcon && (
           <div className="absolute inset-0 flex items-center justify-center">
