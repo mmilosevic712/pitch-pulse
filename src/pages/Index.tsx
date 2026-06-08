@@ -16,9 +16,9 @@ const Index = () => {
         <div className="container flex items-center justify-between py-4">
           <div className="flex items-center gap-2">
             <Zap className="text-primary" size={24} />
-            <h2 className="font-display text-xl font-bold uppercase tracking-wider text-foreground">
+            <span className="font-display text-xl font-bold uppercase tracking-wider text-foreground">
               Hot <span className="text-primary">Topics</span>
-            </h2>
+            </span>
           </div>
           <Button
             variant="outline"
@@ -34,6 +34,9 @@ const Index = () => {
       </header>
 
       <main className="container py-6 md:py-10 space-y-8">
+        <h1 className="font-display text-2xl md:text-3xl font-bold uppercase tracking-wider text-foreground">
+          Latest <span className="text-primary">Football News</span>
+        </h1>
         {/* Loading state */}
         {loading && articles.length === 0 && (
           <div className="flex flex-col items-center justify-center py-32 gap-4">

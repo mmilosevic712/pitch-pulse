@@ -50,9 +50,9 @@ export function HeroStory({ article }: HeroStoryProps) {
           </span>
           <SentimentBadge sentiment={article.sentiment} />
         </div>
-        <h1 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold leading-tight max-w-3xl text-foreground">
+        <h2 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold leading-tight max-w-3xl text-foreground">
           {article.title}
-        </h1>
+        </h2>
         <div className="mt-3 flex items-center gap-3 text-sm text-muted-foreground">
           <span className="font-semibold text-primary uppercase tracking-wide text-xs">
             {article.source_id}
