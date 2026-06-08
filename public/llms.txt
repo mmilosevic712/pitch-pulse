@@ -1,0 +1,7 @@
+# Pitch Pulse
+
+> The hottest and most relevant football news, curated and delivered instantly.
+
+## Pages
+
+- [Home](/): Latest football headlines, trending stories, and match insights from top leagues around the world.
