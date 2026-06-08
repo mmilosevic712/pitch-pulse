@@ -5,6 +5,9 @@ const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
+    document.title = "404 — Page Not Found | Pitch Pulse";
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute("content", "The page you're looking for doesn't exist. Return to Pitch Pulse for the latest football news.");
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
   }, [location.pathname]);
 
